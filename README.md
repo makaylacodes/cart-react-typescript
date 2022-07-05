@@ -2,8 +2,8 @@
 
 # cart-react-typescript
 
+This program is a shopping cart built with ReactJS, Typescript, Material UI, Styled Components and React-Query.
 
-Learn the fundamentals and how to build a ReactJS shopping cart with Typescript, Material UI, Styled Components and React-Query.
-This tutorial uses a free open API for dummy data to the items in the shop. 
+To populate this fake shopping page I used the fakestore API, an open source software, to fill in the shop with dummy data. Users will be able to add items to the cart along with the option to change the number of items. 
 
-Using a fakestore API, an open source software, to fill in the shop with dummy data. Add items to the cart with the option to change the number of items. React-Query hooks is used for fetching the data from the API. There is no submit. Focusing on just this page
+This project is built using the freecodecamp tutorial, but I have made changes to make this project my own.
