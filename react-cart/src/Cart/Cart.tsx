@@ -26,7 +26,7 @@ return (
             //sending props to the cart items
             <CartItem
             //set a key to map through the items
-            key={item.id}
+             key={item.id}
              item={item}
              addToCart={addToCart}
              removeFromCart={removeFromCart}

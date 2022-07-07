@@ -12,10 +12,8 @@ import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import Cart from "./Cart/Cart";
 
-
 //styles
 import { Wrapper, StyledButton } from "./App.styles";
-
 
 //Types
 export type CartItemType = {
@@ -37,16 +35,19 @@ await(await fetch('https://fakestoreapi.com/products')).json();
 
 //badge displays the number of items in the cart 
 
-const App= () => {
+const App = () => {
 
   //create a few of the states needed for the cart
   //boolean that tells me whether the cart is opened or closed
-const [cartOpen, setCartOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
 //UseState initializes an array
-const [cartItems, setCartItems] = useState([] as CartItemType[])
+const [cartItems, setCartItems] = useState([] as CartItemType[]);
 
-  const {data, isLoading, error} = useQuery<CartItemType[]>('products', getProducts);
+  const {data, isLoading, error} = useQuery<CartItemType[]>(
+    'products', 
+    getProducts
+    );
   console.log(data);
 
   const getTotalItems = (items: CartItemType[]) => 
@@ -55,7 +56,24 @@ const [cartItems, setCartItems] = useState([] as CartItemType[])
   //Accumulator starts with zero and adds amount for each item
   items.reduce((ack:number, item) => ack + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems(prev => {
+      //1. Is the item already added in the cart?
+      const isItemInCart = prev.find(item => item.id === clickedItem.id)
+      //updates the amounts
+      if (isItemInCart){
+        return prev.map(item => (
+          item.id === clickedItem.id
+          //updates amount if returned
+          ? { ...item, amount: item.amount + 1 }
+          : item
+        ));
+      }
+
+      //First time item is added
+      return [ ...prev, {clickedItem, amount: 1}];
+    });
+  };
 
   const handleRemoveFromCart = () => null;
 
