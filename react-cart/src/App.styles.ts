@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 //So it doesn't go to the edges of the screen
 export const Wrapper = styled.div`
-    margin:40px;
+    margin:160px;
 `;
 
 //Provides it with the IconButton component
@@ -16,3 +16,4 @@ export const StyledButton = styled(IconButton)`
     right: 20px;
     top: 20px;
 `;
+

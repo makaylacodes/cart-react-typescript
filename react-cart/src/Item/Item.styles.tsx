@@ -8,7 +8,7 @@ export const Wrapper = styled.div `
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 60%;
+  width: 70%;
   border: 1px solid lightblue;
   border-radius: 20px;
   height: 100%;
@@ -26,7 +26,9 @@ export const Wrapper = styled.div `
 
   div {
     font-family: Arial, Helvectica, sans-serif;
-    padding: 3rem;
-    height: 60%;
+    padding: .1rem;
+    height: 50%;
+    text-align: center;
+    
   }
 `;

@@ -93,10 +93,8 @@ const App = () => {
   if (error) return <div>Something went wrong ...</div>;
 
   return(
-
     //Inside wrapper to map the data
     <Wrapper>
-
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
       <Cart
           cartItems={cartItems}

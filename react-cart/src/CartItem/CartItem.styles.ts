@@ -21,7 +21,7 @@ div {
 }
 
 img{
-    max-width:80px;
+    max-width:90px;
     object-fit: cover;
     margin-left:40px;
 
