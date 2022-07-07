@@ -13,7 +13,8 @@ import Badge from "@material-ui/core/Badge";
 
 
 //styles
-import { Wrapper } from "./App.styles";
+import { Wrapper, StyledButton } from "./App.styles";
+
 
 //Types
 export type CartItemType = {
@@ -32,13 +33,26 @@ export type CartItemType = {
 const getProducts = async (): Promise<CartItemType[]> =>
 await(await fetch('https://fakestoreapi.com/products')).json();
 
+
+//badge displays the number of items in the cart 
+
 const App= () => {
+
+  //create a few of the states needed for the cart
+  //boolean that tells me whether the cart is opened or closed
+const [cartOpen, setCartOpen] = useState(false);
+
+//UseState initializes an array
+const [cartItems, setCartItems] = useState([] as CartItemType[])
 
   const {data, isLoading, error} = useQuery<CartItemType[]>('products', getProducts);
   console.log(data);
 
-  //
-  const getTotalItems = () => null;
+  const getTotalItems = (items: CartItemType[]) => 
+  //implicit returns
+
+  //Accumulator starts with zero and adds amount for each item
+  items.reduce((ack:number, item) => ack + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CartItemType) => null;
 
@@ -53,6 +67,19 @@ const App= () => {
 
     //Inside wrapper to map the data
     <Wrapper className="App">
+
+//Creates Drawer from the material-ui
+      <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+        //Creates the cart
+        Cart goes here
+      </Drawer>
+
+      <StyledButton onClick={() => setCartOpen(true)}>
+        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+          <AddShoppingCart />
+        </Badge>
+      </StyledButton>
+
       <Grid container spacing ={3}>
         {data?.map(item => (
           // Need a keep to map through  
