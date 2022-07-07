@@ -16,16 +16,19 @@ type Props = {
 };
 
 const Cart: React.FC<Props> = ({cartItems, addToCart, removeFromCart}) =>{
-return (
+
+    const calculateTotal = (items: CartItemType[]) =>
+    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+
+    return (
     //If there are no items in cart, a message will be displayed. If there are items in the cart, no message will be displayed
-    <Wrapper>
-        <h2>Your Shopping Cart</h2>
-        {cartItems.length === 0 ? <p>No items in cart.</p> : null}
-        {cartItems.map(item => (
+        <Wrapper>
+            <h2>Your Shopping Cart</h2>
+            {cartItems.length === 0 ? <p>No items in cart.</p> : null}
+            {cartItems.map(item => (
 
             //sending props to the cart items
             <CartItem
-            //set a key to map through the items
              key={item.id}
              item={item}
              addToCart={addToCart}
@@ -33,6 +36,7 @@ return (
 
             />
         ))}
+        <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
     </Wrapper>
 );
 };

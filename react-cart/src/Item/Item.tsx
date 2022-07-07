@@ -13,7 +13,7 @@ type Props = {
     handleAddToCart: (clickedItem: CartItemType) => void ;
 };
 
-export const Item: React.FC<Props> = ({item, handleAddToCart}) => (
+const Item: React.FC<Props> = ({item, handleAddToCart}) => (
     
     //The image is pulled from the fakestoreAPI. In JSX we have to use
     // {} to grab values
