@@ -10,6 +10,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Grid from '@material-ui/core/Grid';
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
+import Cart from "./Cart/Cart";
 
 
 //styles
@@ -66,12 +67,14 @@ const [cartItems, setCartItems] = useState([] as CartItemType[])
   return(
 
     //Inside wrapper to map the data
-    <Wrapper className="App">
+    <Wrapper>
 
-//Creates Drawer from the material-ui
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-        //Creates the cart
-        Cart goes here
+        <Cart 
+        cartItems={cartItems} 
+        addToCart={handleAddToCart}
+        removeFromCart={handleRemoveFromCart}
+        />
       </Drawer>
 
       <StyledButton onClick={() => setCartOpen(true)}>
